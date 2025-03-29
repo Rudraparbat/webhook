@@ -46,6 +46,8 @@ class WhatsAppWebhookAPIView(APIView):
                 "context": {"message_id": message["id"]}  # Reply in context
             }
 
+            print(W_number_id)
+
             response = requests.post(
                 f"https://graph.facebook.com/v18.0/{W_number_id}/messages",
                 headers={"Authorization": f"Bearer {W_api}"},
@@ -67,6 +69,10 @@ class WhatsAppWebhookAPIView(APIView):
     # Webhook verification (GET request)
     def get(self, request, *args, **kwargs):
         verify_token = V_token
+        print("The token is :",verify_token)
         if request.GET.get("hub.verify_token") == verify_token:
+            print("This is Verified")
             return Response({"hub.challenge": request.GET.get("hub.challenge")}, status=status.HTTP_200_OK)
-        return Response({"status": "verification failed"}, status=status.HTTP_403_FORBIDDEN)
+        else :
+            print("This is not verified")
+            return Response({"status": "verification failed"}, status=status.HTTP_403_FORBIDDEN)
