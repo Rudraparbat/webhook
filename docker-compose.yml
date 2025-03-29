@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    volumes :
+      - .:/app
+    ports:
+      [8000:8000]
+    image: app:WhatsappBot
+    container_name: W_Bot_Container
+    entrypoint: ["./entrypoint.sh"]
+    env_file:
+      - .env
+    
+  
