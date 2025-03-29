@@ -70,7 +70,7 @@ class WhatsAppWebhookAPIView(APIView):
     def get(self, request, *args, **kwargs):
         verify_token = V_token
         print("The token is :",verify_token)
-        if request.GET.get("hub.verify_token") == verify_token:
+        if request.GET.get("hub.verify_token") == verify_token and request.GET.get("hub.mode") == "subscribe" :
             print("This is Verified")
             return Response({"hub.challenge": request.GET.get("hub.challenge")}, status=status.HTTP_200_OK)
         else :
