@@ -5,5 +5,5 @@ from whatsapp_bot.views import WhatsAppWebhookAPIView
 
 urlpatterns = [
     
-    path("" , WhatsAppWebhookAPIView.as_view() , name = "whatsappbot")
+    path("webhook_verify" , WhatsAppWebhookAPIView.as_view() , name = "whatsappbot")
 ]
