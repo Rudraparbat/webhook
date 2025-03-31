@@ -22,6 +22,7 @@ class WhatsAppWebhookAPIView(APIView):
         try:
             # Parse incoming webhook payload
             payload = json.loads(request.body)
+            print(payload)
             entry = payload.get("entry", [{}])[0]
             changes = entry.get("changes", [{}])[0]
             value = changes.get("value", {})
