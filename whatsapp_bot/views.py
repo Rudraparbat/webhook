@@ -74,7 +74,7 @@ class WhatsAppWebhookAPIView(APIView):
         whats_app_verify_challenge = request.GET.get("hub.challenge")
         if request.GET.get("hub.verify_token") == verify_token and request.GET.get("hub.mode") == "subscribe" :
             print("This is Verified")
-            return Response(str(whats_app_verify_challenge), status=status.HTTP_200_OK , mimetype="text/plain")
+            return Response(str(whats_app_verify_challenge), status=status.HTTP_200_OK)
         else :
             print("This is not verified")
             return Response({"status": "verification failed"}, status=status.HTTP_403_FORBIDDEN)
